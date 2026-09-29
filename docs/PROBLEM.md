@@ -2,7 +2,7 @@
 
 ## User
 
-A federal contracting analyst who needs to quickly understand a prospective reader.
+[Choose exactly one primary user for version 1.]
 
 ## Current problem
 
