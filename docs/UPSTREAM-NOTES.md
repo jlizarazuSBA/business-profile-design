@@ -148,6 +148,18 @@ Source: https://api.usaspending.gov/docs/endpoints
 
 ## Integration implications
 
-- [One difference between the APIs that affects the combined profile.]
-- [One reliability or data-quality risk.]
-- [One design decision this research will influence.]
+- SAM.gov and USAspending provide complementary information: SAM.gov
+  supplies entity-registration details, while USAspending supplies
+  federal award-history details. The backend must normalize both
+  sources into one BusinessProfile response.
+
+- The two sources have different access and data-quality risks.
+  SAM.gov requires a Public API Key and may return incomplete or
+  differently structured business-type data. USAspending does not
+  currently require authorization, but the recipient-to-UEI lookup and
+  final award-search filter must be verified before implementation.
+
+- The combined-profile endpoint will return available data when one
+  source is temporarily unavailable and will clearly identify the
+  unavailable profile section. It will not represent a partial profile
+  as complete.
