@@ -107,7 +107,17 @@ Source: https://api.usaspending.gov/docs/endpoints
 
 ### Failure and rate-limit behavior
 
-[Document errors/rate limits and the source link where verified.]
+USAspending documents the following general response behavior:
+
+- 200: the request succeeded.
+- 400: the request is malformed.
+- 500: the server returned an error.
+
+No general API request-rate limit was identified in the endpoint
+documentation reviewed for this project. Rate-limit behavior remains an
+open question and must be verified before production use.
+
+Source: https://api.usaspending.gov/docs/endpoints
 
 ### Open questions
 
