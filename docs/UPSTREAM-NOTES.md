@@ -70,7 +70,19 @@ Source: https://api.usaspending.gov/
 
 ### Base URL and endpoint
 
-[Record the exact base URL, endpoint path, and HTTP method for award search.]
+The USAspending API base URL is:
+
+https://api.usaspending.gov
+
+The version 1 award-history lookup will evaluate the following V2
+endpoint:
+
+POST /api/v2/search/spending_by_award/
+
+The endpoint returns fields from awards that match the request filters.
+The exact request body and UEI filter field still require verification.
+
+Source: https://api.usaspending.gov/docs/endpoints
 
 ### Lookup input
 
