@@ -12,6 +12,10 @@ assumptions that still need validation.
 
 [What information does this API contribute to the business profile?]
 
+The SAM.gov Entity Management API provides public entity-registration information for the business identified by a UEI. In version 1, this information will supply the business identity, registration status, address, and available economic or business-type details for the combined profile.
+
+Source: https://open.gsa.gov/api/entity-api/
+
 ### Base URL and endpoint
 
 [Record the exact base URL, API version, and entity lookup endpoint.]
@@ -23,6 +27,8 @@ assumptions that still need validation.
 ### Authentication
 
 [State how the public API key is provided. Never write the real key.]
+
+The SAM.gov Entity Management API requires a SAM.gov Public API Key. For this personal project, the key will be requested through a personal SAM.gov/Login.gov account and stored outside source control. It will not be committed to GitHub or included in this document.
 
 ### Relevant response data
 
