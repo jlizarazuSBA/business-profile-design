@@ -64,6 +64,10 @@ When the limit is exceeded, the API returns 400 error.
 
 [What information does this API contribute to the business profile?]
 
+The USAspending API provides public federal spending and award data. For version 1, it will supply high-level award-history information for business profile, such as awards associated with the recipient and the agencies involved.
+
+Source: https://api.usaspending.gov/
+
 ### Base URL and endpoint
 
 [Record the exact base URL, endpoint path, and HTTP method for award search.]
@@ -76,6 +80,10 @@ until the official documentation proves it.]
 ### Authentication
 
 [State whether authentication is required.]
+
+USAspending API endpoints do not currently require authorization. The application can call the public API without an API key.
+
+Source: https://api.usaspending.gov/docs/endpoints
 
 ### Relevant response data
 
@@ -91,7 +99,12 @@ until the official documentation proves it.]
 
 ### Open questions
 
-- [Question you still need to answer]
+- Which USAspending V2 award-search endpoint returns award history for
+  a recipient identified by a UEI?
+
+- What exact request field and request-body format filters awards by a
+  recipient UEI, and does the API support a UEI directly or require a
+  recipient-name lookup first?- [Question you still need to answer]
 
 ## Integration implications
 
