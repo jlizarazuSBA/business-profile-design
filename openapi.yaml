@@ -41,10 +41,22 @@ paths:
                 $ref: '#/components/schemas/BusinessProfile'
         '400':
           description: The UEI does not have the required format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: No business profile was found for the UEI.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '502':
           description: An upstream public-data service is unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
@@ -62,3 +74,23 @@ components:
           type: string
           description: The business's legal name from available registration data.
           example: Example Federal Services LLC
+
+  Error:
+    type: string
+    required:
+    - status
+    - code
+    - message
+    properties:
+      status:
+        type: integer
+        description: HTTP status code returned by this API.
+        example: 400
+      code:
+        type: string
+        description: Application-specific, stable error code.
+        example: INVALID_UEI
+      message:
+        type: string
+        description: Human-readable explanation of the problem.
+        example: UEI must contain exactly 12 alphanumeric characters.
