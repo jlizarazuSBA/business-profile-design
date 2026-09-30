@@ -1,0 +1,43 @@
+openapi: 3.0.3
+
+info:
+  title: Federal Business Profile API
+  version: 0.1.0
+  description: >
+    A public-data API that combines federal business-registration
+    information and federal award-history information into one
+    business profile.
+
+servers:
+  - url: https://api.example.com
+    description: Placeholder production URL
+  - url: http://localhost:8080
+    description: Local development URL
+
+paths:
+  /api/businesses/{uei}:
+    get:
+      summary: Get a combined federal business profile
+      description: >
+        Returns available entity-registration and federal award-history
+        information for a business identified by its UEI. If one
+        upstream source is temporarily unavailable, the response
+        identifies the unavailable section and does not present the
+        partial profile as complete.
+      parameters:
+        - name: uei
+          in: path
+          required: true
+          description: A 12-character alphanumeric Unique Entity Identifier.
+          schema:
+            type: string
+            pattern: '^[A-Za-z0-9]{12}$'
+      responses:
+        '200':
+          description: A business profile was found.
+        '400':
+          description: The UEI does not have the required format.
+        '404':
+          description: No business profile was found for the UEI.
+        '502':
+          description: An upstream public-data service is unavailable.
