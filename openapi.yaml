@@ -35,9 +35,30 @@ paths:
       responses:
         '200':
           description: A business profile was found.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessProfile'
         '400':
           description: The UEI does not have the required format.
         '404':
           description: No business profile was found for the UEI.
         '502':
           description: An upstream public-data service is unavailable.
+
+components:
+  schemas:
+    BusinessProfile:
+      type: object
+      required:
+        - uei
+        - legalName
+      properties:
+        uei:
+          type: string
+          description: The business's 12-character Unique Entity Identifier.
+          example: ABCD1234EFGH
+        legalName:
+          type: string
+          description: The business's legal name from available registration data.
+          example: Example Federal Services LLC
