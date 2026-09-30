@@ -99,7 +99,25 @@ Source: https://api.usaspending.gov/docs/endpoints
 
 ### Relevant response data
 
-[List the award fields your version 1 user needs.]
+For version 1, the combined business profile needs a concise award
+history rather than every field from USAspending. The relevant award
+data is:
+
+- Award identifier
+- Award title or description
+- Recipient name
+- Recipient UEI when returned by the API
+- Awarding agency
+- Award type
+- Award amount
+- Award start date
+- Award end date
+- Place of performance, when available
+
+The final field mapping must be verified against a real
+`spending_by_award` response before implementation.
+
+Source: https://api.usaspending.gov/docs/endpoints
 
 ### No-result behavior
 
