@@ -46,6 +46,14 @@ name, UEI, address, registration status, and certification/business types.]
 [Document HTTP error behavior, rate limits, and the source link where you
 verified the information.]
 
+The API documentation sets a request limit for Public API Keys. The application must handle rate-limit responses without repeatedly retrying requests or presenting stale information as current.
+
+Verified rate limit: 1,000 calls.
+
+Source: https://open.gsa.gov/api/entity-api/
+
+When the limit is exceeded, the API returns 400 error.
+
 ### Open questions
 
 - [Question you still need to answer]
