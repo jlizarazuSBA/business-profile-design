@@ -30,6 +30,8 @@ Source: https://open.gsa.gov/api/entity-api/
 
 The SAM.gov Entity Management API requires a SAM.gov Public API Key. For this personal project, the key will be requested through a personal SAM.gov/Login.gov account and stored outside source control. It will not be committed to GitHub or included in this document.
 
+Source: https://open.gsa.gov/api/entity-api/
+
 ### Relevant response data
 
 [List only the fields relevant to your version 1 profile: legal business
