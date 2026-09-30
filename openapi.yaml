@@ -35,22 +35,25 @@ paths:
       responses:
         '200':
           description: A business profile was found.
-          content: 
+          content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BusinessProfile'
+
         '400':
           description: The UEI does not have the required format.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
         '404':
           description: No business profile was found for the UEI.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
         '502':
           description: An upstream public-data service is unavailable.
           content:
@@ -70,27 +73,134 @@ components:
           type: string
           description: The business's 12-character Unique Entity Identifier.
           example: ABCD1234EFGH
+
         legalName:
           type: string
           description: The business's legal name from available registration data.
           example: Example Federal Services LLC
 
-  Error:
-    type: string
-    required:
-    - status
-    - code
-    - message
-    properties:
-      status:
-        type: integer
-        description: HTTP status code returned by this API.
-        example: 400
-      code:
-        type: string
-        description: Application-specific, stable error code.
-        example: INVALID_UEI
-      message:
-        type: string
-        description: Human-readable explanation of the problem.
-        example: UEI must contain exactly 12 alphanumeric characters.
+        registrationStatus:
+          type: string
+          description: Registration status when available from SAM.gov.
+          example: Active
+
+        physicalAddress:
+          type: string
+          description: Physical business address when available from SAM.gov.
+          example: 123 Example Street, Washington, DC 20001
+
+        certifications:
+          type: array
+          description: Available socioeconomic certifications or business types.
+          items:
+            type: string
+          example:
+            - HUBZone
+            - Women-Owned Small Business
+
+        awards:
+          type: array
+          description: High-level federal award history when available from USAspending.
+          items:
+            $ref: '#/components/schemas/AwardSummary'
+
+        sourceStatus:
+          $ref: '#/components/schemas/SourceStatus'
+
+    Error:
+      type: object
+      required:
+        - status
+        - code
+        - message
+      properties:
+        status:
+          type: integer
+          description: HTTP status code returned by this API.
+          example: 400
+
+        code:
+          type: string
+          description: Application-specific, stable error code.
+          example: INVALID_UEI
+
+        message:
+          type: string
+          description: Human-readable explanation of the problem.
+          example: UEI must contain exactly 12 alphanumeric characters.
+
+    AwardSummary:
+      type: object
+      required:
+        - awardId
+        - recipientName
+      properties:
+        awardId:
+          type: string
+          description: Identifier for the federal award.
+          example: 47QRAA20D0001
+
+        title:
+          type: string
+          description: Award title or description when available.
+          example: Information Technology Support Services
+
+        recipientName:
+          type: string
+          description: Recipient name reported by USAspending.
+          example: Example Federal Services LLC
+
+        awardingAgency:
+          type: string
+          description: Federal agency that issued the award when available.
+          example: General Services Administration
+
+        awardType:
+          type: string
+          description: Type of federal award when available.
+          example: Definitive Contract
+
+        amount:
+          type: number
+          format: double
+          description: Award amount when available.
+          example: 1250000.00
+
+        startDate:
+          type: string
+          format: date
+          description: Award start date when available.
+          example: '2025-10-01'
+
+        endDate:
+          type: string
+          format: date
+          description: Award end date when available.
+          example: '2026-09-30'
+
+    SourceStatus:
+      type: object
+      required:
+        - samGov
+        - usaSpending
+      properties:
+        samGov:
+          $ref: '#/components/schemas/SourceAvailability'
+
+        usaSpending:
+          $ref: '#/components/schemas/SourceAvailability'
+
+    SourceAvailability:
+      type: object
+      required:
+        - available
+      properties:
+        available:
+          type: boolean
+          description: Whether data from this source was available for this response.
+          example: true
+
+        message:
+          type: string
+          description: A user-safe explanation when source data is unavailable.
+          example: SAM.gov data is temporarily unavailable.
