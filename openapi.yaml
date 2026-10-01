@@ -39,6 +39,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BusinessProfile'
+                example:
+                  uei: ABCD1234EFGH
+                  legalName: Example Federal Service LLC
+                  registrationStatus: Active
+                  physicalAddress: 123 Example Street, Washington, DC 20001
+                  certifications: 
+                    - HUBZone
+                    - Woman-Owned Small Business
+                  awards:
+                    - awardId: 47QRAA20D0001
+                      title: Information Technology Support Services
+                      recipientName: Example Federal Services LLC
+                      awardingAgency: General Services Administration 
+                      awardType: Definitve Contract
+                      amount: 125000.00
+                      startDate: '2025-10-01'
+                      endDate: '2026-09-30'
+                  sourceStatus:
+                    samGov:
+                      available: true
+                    usaSpending:
+                      available: true
+                      
 
         '400':
           description: The UEI does not have the required format.
