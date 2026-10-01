@@ -39,28 +39,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BusinessProfile'
-                example:
-                  uei: ABCD1234EFGH
-                  legalName: Example Federal Service LLC
-                  registrationStatus: Active
-                  physicalAddress: 123 Example Street, Washington, DC 20001
-                  certifications: 
-                    - HUBZone
-                    - Woman-Owned Small Business
-                  awards:
-                    - awardId: 47QRAA20D0001
-                      title: Information Technology Support Services
-                      recipientName: Example Federal Services LLC
-                      awardingAgency: General Services Administration 
-                      awardType: Definitve Contract
-                      amount: 125000.00
-                      startDate: '2025-10-01'
-                      endDate: '2026-09-30'
-                  sourceStatus:
-                    samGov:
-                      available: true
-                    usaSpending:
-                      available: true
+              example:
+                uei: ABCD1234EFGH
+                legalName: Example Federal Service LLC
+                registrationStatus: Active
+                physicalAddress: 123 Example Street, Washington, DC 20001
+                certifications: 
+                  - HUBZone
+                  - Woman-Owned Small Business
+                awards:
+                  - awardId: 47QRAA20D0001
+                    title: Information Technology Support Services
+                    recipientName: Example Federal Services LLC
+                    awardingAgency: General Services Administration 
+                    awardType: Definitve Contract
+                    amount: 125000.00
+                    startDate: '2025-10-01'
+                    endDate: '2026-09-30'
+                sourceStatus:
+                  samGov:
+                    available: true
+                  usaSpending:
+                    available: true
                       
 
         '400':
@@ -69,6 +69,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              example:
+                status: 400
+                code: INVALID_UEI
+                message: UEI must contain exactly 12 alphanumeric characters.
 
         '404':
           description: No business profile was found for the UEI.
@@ -76,6 +80,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              example:
+                status: 404
+                code: BUSINESS_NOT_FOUND
+                message: No business profile was found for the supplied UEI.
 
         '502':
           description: An upstream public-data service is unavailable.
@@ -83,6 +91,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              exanple:
+                status: 502
+                code: UPSTREAM_SERVICE_UNAVAILABLE
+                message: SAM.gov data is temporarily unavailable. Available profile data is included when possible.
 
 components:
   schemas:
