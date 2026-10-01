@@ -85,6 +85,23 @@ paths:
                       message: SAM.gov data is temporarily unavailable.
                     usaSpending:
                       available: true
+            partialProfileUsaSpendingUnavailable:
+              summary: Registration data is available; USAspending data is unavilable
+              value:
+                uei: ABCD1234EFGH
+                legalName: Example Federal Service LLC
+                registrationStatus: Active
+                physicalAddress: 123 Example Street, Washington, DC 20001
+                certifications:
+                  - HUBZone
+                  - Woman-Owned Small Business
+                awards: []
+                sourceStatus:
+                  samGov:
+                    available: true
+                  usaSpending:
+                    available: false
+                    message: USAspending data is temporarily unavailable.
                 
                       
 
