@@ -22,4 +22,4 @@ Login/accounts; updating SAM.gov data; procurement eligibility/risk scoring; wri
 
 ## Decisions 
 
-Return available results with a clear "some data is temporary unavailable" notice instead of showing a blank page or claiming the profile is complete.
+If one public data source is temporarily unavailable but the other returns usable data, the application returns a partial business profile with HTTP 200. The response identifies which source is unavailable and explains what information could not be included. The application returns HTTP 502 only when it cannot return the required profile because upstream services are unavailable or send an invalid response.
