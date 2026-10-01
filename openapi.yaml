@@ -39,28 +39,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BusinessProfile'
-              example:
-                uei: ABCD1234EFGH
-                legalName: Example Federal Service LLC
-                registrationStatus: Active
-                physicalAddress: 123 Example Street, Washington, DC 20001
-                certifications: 
-                  - HUBZone
-                  - Woman-Owned Small Business
-                awards:
-                  - awardId: 47QRAA20D0001
-                    title: Information Technology Support Services
-                    recipientName: Example Federal Services LLC
-                    awardingAgency: General Services Administration 
-                    awardType: Definitve Contract
-                    amount: 125000.00
-                    startDate: '2025-10-01'
-                    endDate: '2026-09-30'
-                sourceStatus:
-                  samGov:
-                    available: true
-                  usaSpending:
-                    available: true
+              examples:
+                completeProfile:
+                  summary: Both upstream sources returned data
+                  value:
+                  
+                  uei: ABCD1234EFGH
+                  legalName: Example Federal Service LLC
+                  registrationStatus: Active
+                  physicalAddress: 123 Example Street, Washington, DC 20001
+                  certifications: 
+                    - HUBZone
+                    - Woman-Owned Small Business
+                  awards:
+                    - awardId: 47QRAA20D0001
+                      title: Information Technology Support Services
+                      recipientName: Example Federal Services LLC
+                      awardingAgency: General Services Administration 
+                      awardType: Definitve Contract
+                      amount: 125000.00
+                      startDate: '2025-10-01'
+                      endDate: '2026-09-30'
+                  sourceStatus:
+                    samGov:
+                      available: true
+                    usaSpending:
+                      available: true
+              partialProfileSamGovUnavailable:
+                summary: Award history is available; SAM.gov data is unavilable
+                value:
+                  uei: ABCD1234EFGH
+                  legalName: Example Federal Services LLC
+                  awards:
+                    - awardId: 47QRAA20D0001
+                      title: Information Technology Services LLC
+                      recipientName: Example Federal Support Services
+                      awardingAgency: General Services Administration
+                      awardType: Definitive Contract
+                      amount: 1250000.00
+                      startDate: '2025-10-01'
+                      endDate: '2026-09-30'
+                  sourceStatus:
+                    samGov:
+                      available: false
+                      message: SAM.gov data is temporarily unavailable.
+                    usaSpending:
+                      available: true
+                
                       
 
         '400':
@@ -86,7 +111,7 @@ paths:
                 message: No business profile was found for the supplied UEI.
 
         '502':
-          description: An upstream public-data service is unavailable.
+          description: The profile could not be returned because required upstream public-data services were unavailable or returned an invalid response. Partial profile responses are returned with 200 instead.
           content:
             application/json:
               schema:
